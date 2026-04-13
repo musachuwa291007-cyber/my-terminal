@@ -19,6 +19,6 @@ io.on('connection', (socket) => {
 app.use(handler);
 
 const port = process.env.PORT || 3000;
-server.listen(port, () => {
-    print(`✅ Dashboard Server running on port ${port}`);
+server.listen(port, '0.0.0.0', () => {
+    console.log(`✅ Dashboard Server running on port ${port}`);
 });
