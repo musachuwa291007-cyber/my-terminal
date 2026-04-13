@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@sveltejs/adapter-node": "^5.5.4",
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3"
   }
