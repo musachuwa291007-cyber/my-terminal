@@ -11,7 +11,7 @@ current = 0
 
 @sio.event
 def connect():
-    print("🛡️ ICC ENGINE: Connected to Live Bridge")
+    print("🛡️ ICC ENGINE: Connected to Live Bridge (Render)")
 
 def start_stream():
     global current
@@ -34,7 +34,7 @@ def start_stream():
                 "side": "BUY" if price > data.open else "SELL"
             }
             
-            # Sending data to your Vercel Dashboard
+            # Sending data to your LIVE Render Dashboard
             sio.emit('new_whale', payload)
             print(f"🔥 SENT TO LIVE: {payload['asset']} | {payload['price']}")
             
@@ -49,9 +49,9 @@ def start_stream():
 
 if __name__ == '__main__':
     try:
-        # REPLACE THE LINK BELOW WITH YOUR ACTUAL VERCEL URL
-        sio.connect('https://your-project-name.vercel.app', transports=['websocket'])
+        # UPDATED TO YOUR LIVE RENDER LINK
+        sio.connect('https://icc-dashboard.onrender.com', transports=['websocket'])
         start_stream()
     except Exception as e:
         print(f"❌ Connection Failed: {e}")
-        print("💡 Check your Vercel URL and make sure your internet is on!")
+        print("💡 Ensure your Render service status is 'Live' and internet is active!")
