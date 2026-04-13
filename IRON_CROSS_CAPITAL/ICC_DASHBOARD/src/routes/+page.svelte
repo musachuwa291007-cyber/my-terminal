@@ -6,15 +6,22 @@
   let status = $state("OFFLINE");
 
   onMount(() => {
-    // This now looks at the same URL the website is hosted on
-    const socket = io(); 
+    // We point this to port 5173
+    const socket = io('http://localhost:5173', {
+      transports: ['websocket']
+    }); 
     
-    socket.on('connect', () => { status = "ONLINE"; });
+    socket.on('connect', () => { 
+      status = "ONLINE"; 
+      console.log("Connected to Engine!");
+    });
+
     socket.on('new_whale', (data) => {
       if (data) {
         orders = [data, ...orders].slice(0, 15);
       }
     });
+
     return () => socket.disconnect();
   });
 </script>
